@@ -192,8 +192,7 @@ h6,
         url(../img/bg-round.png),
         url(../img/bg-round-2.png),
         url(../img/bg-square.png),
-        url(../img/bg-line.png),
-        url(../img/bg-bottom-hero.png);
+        url(../img/bg-line.png);
     background-position:
         0px 40%,
         right 0 top 0,
@@ -335,8 +334,7 @@ h6,
         url(../img/bg-round.png),
         url(../img/bg-round-2.png),
         url(../img/bg-square.png),
-        url(../img/bg-line.png),
-        url(../img/bg-bottom-footer.png);
+        url(../img/bg-line.png);
     background-position:
         0px 112px,
         right 0 bottom 0,

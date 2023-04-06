@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,27 +23,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div class="bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
 
         <!-- Navbar & Hero Start -->
         <div class="position-relative p-0">
@@ -53,8 +44,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="webapp/templates/pdfmerge.html" class="nav-item nav-link">Merge PDFs</a>
+                        <a href="/" class="nav-item nav-link active">Home</a>
+                        <a href="/merge-pdfs" class="nav-item nav-link">Merge PDFs</a>
                         <a href="domain.html" class="nav-item nav-link">Extract Mp3</a>
                         <a href="domain.html" class="nav-item nav-link">CONVERT IMAGES</a>
                     </div>
@@ -79,7 +70,7 @@
                                 Started Now</a>
                         </div>
                         <div class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid animated zoomIn" src="img/asset (1).png" alt="">
+                            <img class="img-fluid animated zoomIn" src="../static/img/asset1.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -108,28 +99,29 @@
         </div>
         <!-- Full Screen Search End -->
 
-                <!-- Domain Search Start -->
-                <div class="container-xxl domain mb-5" style="margin-top: 90px;">
-                    <div class="container px-lg-5">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-10">
-                                <div class="section-title position-relative text-center mx-auto mb-4 pb-4 wow fadeInUp"
-                                    data-wow-delay="0.1s" style="max-width: 600px;">
-                                    <h1 class="mb-3">Find the tool you need:</h1>
-                                    <p class="mb-1">With just a few clicks, you can convert PDFs to Word documents, Word
-                                        documents to PDFs, JPG images to PDFs, and PDFs to JPG images. You can even convert PDFs
-                                        to HTML web pages.</p>
-                                </div>
-                                <div class="position-relative w-100 my-3 wow fadeInUp text-center" data-wow-delay="0.3s">
-                                    <butaton type="button" class="btn btn-dark fs-3 px-5 mx-5 text-secondary ms-3"
-                                        data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search text-white"></i>
-                                    </butaton>
-                                </div>
-                            </div>
+        <!-- Domain Search Start -->
+        <div class="container-xxl domain mb-5" style="margin-top: 90px;">
+            <div class="container px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="section-title position-relative text-center mx-auto mb-4 pb-4 wow fadeInUp"
+                            data-wow-delay="0.1s" style="max-width: 600px;">
+                            <h1 class="mb-3">Find the tool you need:</h1>
+                            <p class="mb-1">With just a few clicks, you can convert PDFs to Word documents, Word
+                                documents to PDFs, JPG images to PDFs, and PDFs to JPG images. You can even convert PDFs
+                                to HTML web pages.</p>
+                        </div>
+                        <div class="position-relative w-100 my-3 wow fadeInUp text-center" data-wow-delay="0.3s">
+                            <butaton type="button" class="btn btn-dark fs-3 px-5 mx-5 text-secondary ms-3"
+                                data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                                    class="fa fa-search text-white"></i>
+                            </butaton>
                         </div>
                     </div>
                 </div>
-                <!-- Domain Search End -->
+            </div>
+        </div>
+        <!-- Domain Search End -->
 
         <!-- About Start -->
         <div class="container-xxl py-5">
@@ -146,24 +138,24 @@
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
                                 <a href="">
                                     <div class="about-link bg-light rounded text-center p-4">
-                                        <i class="fa fa-file-word fa-2x mb-2" ></i>
-                                        <p class="mb-0" >Convert PDF To <br>Word</p>
+                                        <i class="fa fa-file-word fa-2x mb-2"></i>
+                                        <p class="mb-0">Convert PDF To <br>Word</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
                                 <a href="">
                                     <div class="about-link bg-light rounded text-center p-4">
-                                        <i class="fa fa-music fa-2x mb-2" ></i>
-                                        <p class="mb-0" >Extract Mp3 from <br>Video</p>
+                                        <i class="fa fa-music fa-2x mb-2"></i>
+                                        <p class="mb-0">Extract Mp3 from <br>Video</p>
                                     </div>
                                 </a>
                             </div>
                             <div class=" col-sm-4 wow fadeIn" data-wow-delay="0.5s">
                                 <a href="pdfmerge.html">
                                     <div class="about-link bg-light rounded text-center p-4">
-                                        <i class="fa fa-file-pdf fa-2x mb-2" ></i>
-                                        <p class="mb-0" >Merge <br>PDFs</p>
+                                        <i class="fa fa-file-pdf fa-2x mb-2"></i>
+                                        <p class="mb-0">Merge <br>PDFs</p>
                                     </div>
                                 </a>
                             </div>
@@ -181,7 +173,7 @@
                                 <a href="">
                                     <div class="about-link bg-light rounded text-center p-4">
                                         <i class="fa fa-lock fa-2x mb-2"></i>
-                                        <p class="mb-0" >Password Protect <br>PDFs</p>
+                                        <p class="mb-0">Password Protect <br>PDFs</p>
                                     </div>
                                 </a>
                             </div>
@@ -196,7 +188,7 @@
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="img/asset (2).png">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="../static/img/asset2.png">
                     </div>
                 </div>
             </div>
@@ -260,11 +252,12 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

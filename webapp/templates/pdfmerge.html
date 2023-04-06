@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,30 +19,23 @@
         rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/fontawesome/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
     <div class="bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
 
 
         <!-- Navbar & Hero Start -->
@@ -53,7 +46,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="/" class="nav-item nav-link">Home</a>
                         <a href="pdfmerge.html" class="nav-item nav-link active">Merge PDFs</a>
                         <a href="domain.html" class="nav-item nav-link">Extract Mp3</a>
                         <a href="domain.html" class="nav-item nav-link">CONVERT IMAGES</a>
@@ -67,17 +60,18 @@
                         <div class="col-lg-6 pt-5 text-center text-lg-start">
                             <h1 class="display-4 text-white mb-4 animated slideInLeft">Merge PDFs</h1>
                             <h1 class="text-center mb-4">Upload PDF File</h1>
-                            <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <form action="/merge-pdf-upload" method="POST" enctype="multipart/form-data">
                                 <div class="mb-3">
-                                    <label for="pdf-file" class="form-label">Choose PDF file(s)</label>
-                                    <input type="file" class="form-control" name="pdf_file" id="pdf-file" accept=".pdf"
+                                    <label for="file" class="form-label text-white">Choose PDF file(s)</label>
+                                    <input type="file" class="form-control" name="pdf_file" id="file" accept=".pdf"
                                         multiple>
                                 </div>
-                                <button type="submit" class="btn btn-primary border-0" style="background-color:var(--primary)">Upload</button>
+                                <button disabled id="upload" type="submit" class="btn btn-primary border-0"
+                                    style="background-color:var(--primary)">Upload</button>
                             </form>
                         </div>
                         <div class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid animated zoomIn" src="img/asset (2).png" alt="">
+                            <img class="img-fluid animated zoomIn" src="/static/img/asset2.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -150,7 +144,7 @@
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="img/asset (1).png">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="/static/img/asset1.png">
                     </div>
                 </div>
             </div>
@@ -212,16 +206,18 @@
     </div>
 
     <!-- JavaScript Libraries -->
+    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 
 </html>

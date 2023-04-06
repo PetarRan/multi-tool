@@ -1,16 +1,5 @@
 (function ($) {
     "use strict";
-
-    // Spinner
-    var spinner = function () {
-        setTimeout(function () {
-            if ($('#spinner').length > 0) {
-                $('#spinner').removeClass('show');
-            }
-        }, 1);
-    };
-    spinner();
-    
     
     // Initiate the wowjs
     new WOW().init();
@@ -101,3 +90,13 @@
     
 })(jQuery);
 
+const fileInput = document.getElementById('file');
+const uploadButton = document.getElementById('upload');
+
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length > 0) {
+    uploadButton.disabled = false;
+  } else {
+    uploadButton.disabled = true;
+  }
+});

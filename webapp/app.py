@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response, request
+from flask import Flask, render_template, make_response, request, url_for
 from io import BytesIO
 from PyPDF2 import PdfReader, PdfWriter
 
@@ -6,9 +6,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('/index.html')
+    return render_template('/index.html', static_folder='static')
 
-@app.route('/pdfmerge.html/upload', methods=['POST'])
+@app.route('/merge-pdfs')
+def merge_pdf():
+    return render_template('/pdfmerge.html', static_folder='static')
+
+@app.route('/merge-pdf-upload', methods=['POST'])
 def upload():
     pdf_files = request.files.getlist('pdf_file')
 
@@ -29,6 +33,10 @@ def upload():
     response.headers['Content-Disposition'] = 'attachment; filename=merged.pdf'
     response.headers['Content-Type'] = 'application/pdf'
     return response
+
+@app.route('/static/<path:path>')
+def serve_static(path):
+    return app.send_static_file(path)
 
 if __name__ == '__main__':
     app.run(debug=True)
