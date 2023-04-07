@@ -1,11 +1,11 @@
-from flask import Flask, render_template, make_response, request, url_for
+from flask import Flask, render_template, make_response, request, jsonify, url_for
 import os
 import moviepy.editor
-import tempfile
 from io import BytesIO
 from PyPDF2 import PdfReader, PdfWriter
 from PIL import Image
 import pdf2docx
+import speech_recognition as sr
 
 app = Flask(__name__)
 
@@ -35,7 +35,7 @@ def convert_pdf():
 def transcribe():
     return render_template('/audiotranscibe.html', static_folder='static')
 
-@app.route('/pdf-passprotect')
+@app.route('/pdf-pass')
 def passprotect():
     return render_template('/passprotectpdf.html', static_folder='static')
 
@@ -147,6 +147,73 @@ def convert_pdf_to_docx():
     return response
 
 ############ End of Convert PDF ################
+
+############ Pass Protect PDF ################
+
+@app.route('/protect-pdf', methods=['POST'])
+def protect_pdf():
+    # Get uploaded file and password
+    pdf_file = request.files['file']
+    password = request.form['password']
+
+    # Load PDF file from request and create a PDF writer
+    pdf_reader = PdfReader(pdf_file)
+    pdf_writer = PdfWriter()
+
+    # Add pages from the original PDF to the writer
+    for i in range(len(pdf_reader.pages)):
+            pdf_writer.add_page(pdf_reader.pages[i])
+
+    # Encrypt the PDF with the password
+    pdf_writer.encrypt(password)
+
+    # Write the encrypted PDF to a memory buffer
+    output_buffer = BytesIO()
+    pdf_writer.write(output_buffer)
+    output_buffer.seek(0)
+
+    # Create a Flask response with the encrypted PDF as a downloadable file
+    response = make_response(output_buffer.getvalue())
+    response.headers.set('Content-Type', 'application/pdf')
+    response.headers.set('Content-Disposition', 'attachment', filename='protected.pdf')
+
+    return response
+
+############ End of Pass Protect PDF ################
+
+############ Transcribe Audio #######################
+
+@app.route('/transcribe', methods=['POST'])
+def transcribe_action():
+    # Check if the post request has the file part
+    if 'file' not in request.files:
+        return 'No file part'
+
+    file = request.files['file']
+
+    # Check if file is uploaded
+    if file.filename == '':
+        return 'No file selected'
+
+    # Check if file is mp3
+    if file and file.filename.split('.')[-1].lower() == 'mp3':
+        recognizer = sr.Recognizer()
+
+        # Load audio file into memory
+        audio_file = sr.AudioFile(file)
+        with audio_file as source:
+            audio = recognizer.record(source, duration=300)  # Limit duration to 5 minutes
+
+        # Perform transcription
+        try:
+            text = recognizer.recognize_google(audio)
+            return jsonify({'transcription': text})
+        except sr.UnknownValueError:
+            return 'Could not transcribe audio'
+    else:
+        return 'File type not supported'
+
+############ End of Transcribe Audio ################
 
 ########### Static route ###########
 @app.route('/static/<path:path>')
