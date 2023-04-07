@@ -4,6 +4,7 @@ import moviepy.editor
 import tempfile
 from io import BytesIO
 from PyPDF2 import PdfReader, PdfWriter
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -20,6 +21,10 @@ def merge_pdf():
 @app.route('/extract-mp3')
 def extract_mp3():
     return render_template('/extractmp3.html', static_folder='static')
+
+@app.route('/convert-image')
+def convert_images():
+    return render_template('/convert-images.html', static_folder='static')
 
 ########### End of Navigation routes ###########
 
@@ -78,6 +83,36 @@ def upload_for_extract():
     return response
 
 ########### End of Mp3 Extract ###########
+
+########### Convert Image route ##############
+
+@app.route('/convert-image-action', methods=['POST'])
+def convert_image():
+    # Get uploaded file and output format from form
+    image_file = request.files['image_file']
+    output_format = request.form['output_format']
+
+    # Load image from file
+    image = Image.open(image_file)
+
+    # Convert image to bytes and write to BytesIO buffer
+    output_buffer = BytesIO()
+
+    if output_format.upper() in {'JPEG', 'JPG'} and image.mode == 'RGBA':
+        image = image.convert('RGB')
+    
+
+    image.save(output_buffer, format=output_format)
+    output_buffer.seek(0)
+
+    # Create response and set headers to force download
+    response = make_response(output_buffer.read())
+    response.headers.set('Content-Type', 'image/' + output_format)
+    response.headers.set('Content-Disposition', 'attachment', filename='converted_image.' + output_format)
+
+    return response
+
+############ End of Convert Image ############
 
 ########### Static route ###########
 @app.route('/static/<path:path>')

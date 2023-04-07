@@ -19,8 +19,8 @@
         rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link href="{{ url_for('static', filename='lib/fontawesome/css/all.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='lib/bootstrap-icons/font/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -49,7 +49,7 @@
                         <a href="/" class="nav-item nav-link">Home</a>
                         <a href="/merge-pdfs" class="nav-item nav-link">Merge PDFs</a>
                         <a href="/extract-mp3" class="nav-item nav-link active">Extract Mp3</a>
-                        <a href="domain.html" class="nav-item nav-link">CONVERT IMAGES</a>
+                        <a href="/convert-image" class="nav-item nav-link">CONVERT IMAGES</a>
                     </div>
                 </div>
             </nav>
@@ -59,7 +59,7 @@
                     <div class="row g-5">
                         <div class="col-lg-6 pt-5 text-center text-lg-start">
                             <h1 class="display-4 text-white mb-4 animated slideInLeft">Extract Mp3 from a Video</h1>
-                            <h1 class="text-center mb-4 text-white animated slideInLeft">Upload your video file (.mp4, .MOV, .wmv )</h1>
+                            <h4 class="text-center mb-4 text-white animated slideInLeft">Upload your video file (.mp4, .MOV, .wmv )</h4>
                             <form action="/extract-mp3-from-video" method="POST" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label for="file" class="form-label text-white">Upload a video file</label>
@@ -137,7 +137,7 @@
                                 <a href="">
                                     <div class="about-link bg-light rounded text-center p-4">
                                         <i class="fa fa-microphone fa-2x mb-2"></i>
-                                        <p class="mb-0">Text to <br>Speech</p>
+                                        <p class="mb-0">Transcription from <br>Audio</p>
                                     </div>
                                 </a>
                             </div>
