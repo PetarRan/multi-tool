@@ -6,6 +6,7 @@ from PyPDF2 import PdfReader, PdfWriter
 from PIL import Image
 import pdf2docx
 import speech_recognition as sr
+import tempfile
 
 app = Flask(__name__)
 
@@ -131,21 +132,8 @@ def convert_image():
 
 @app.route('/convert-pdf-to-docx', methods=['POST'])
 def convert_pdf_to_docx():
-    # Get uploaded file
-    pdf_file = request.files['pdf_file']
-
-
-    # Load PDF file from request and convert to Word
-    pdf_bytes = pdf_file.read()
-    docx_bytes = pdf2docx.parse(BytesIO(pdf_bytes))
-
-    # Create response and set headers to force download
-    response = make_response(docx_bytes.getvalue())
-    response.headers.set('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-    response.headers.set('Content-Disposition', 'attachment', filename='converted_document.docx')
-
-    return response
-
+    print("Something Else needs to be here!")
+    
 ############ End of Convert PDF ################
 
 ############ Pass Protect PDF ################
