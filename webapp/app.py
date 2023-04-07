@@ -5,6 +5,7 @@ import tempfile
 from io import BytesIO
 from PyPDF2 import PdfReader, PdfWriter
 from PIL import Image
+import pdf2docx
 
 app = Flask(__name__)
 
@@ -20,11 +21,23 @@ def merge_pdf():
 
 @app.route('/extract-mp3')
 def extract_mp3():
-    return render_template('/extractmp3.html', static_folder='static')
+    return render_template('/mp3extract.html', static_folder='static')
 
 @app.route('/convert-image')
 def convert_images():
-    return render_template('/convert-images.html', static_folder='static')
+    return render_template('/imagesconvert.html', static_folder='static')
+
+@app.route('/convert-pdf')
+def convert_pdf():
+    return render_template('/pdfconvert.html', static_folder='static')
+
+@app.route('/transcibe-audio')
+def transcribe():
+    return render_template('/audiotranscibe.html', static_folder='static')
+
+@app.route('/pdf-passprotect')
+def passprotect():
+    return render_template('/passprotectpdf.html', static_folder='static')
 
 ########### End of Navigation routes ###########
 
@@ -113,6 +126,27 @@ def convert_image():
     return response
 
 ############ End of Convert Image ############
+
+############# Convert PDF to Word #################
+
+@app.route('/convert-pdf-to-docx', methods=['POST'])
+def convert_pdf_to_docx():
+    # Get uploaded file
+    pdf_file = request.files['pdf_file']
+
+
+    # Load PDF file from request and convert to Word
+    pdf_bytes = pdf_file.read()
+    docx_bytes = pdf2docx.parse(BytesIO(pdf_bytes))
+
+    # Create response and set headers to force download
+    response = make_response(docx_bytes.getvalue())
+    response.headers.set('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response.headers.set('Content-Disposition', 'attachment', filename='converted_document.docx')
+
+    return response
+
+############ End of Convert PDF ################
 
 ########### Static route ###########
 @app.route('/static/<path:path>')

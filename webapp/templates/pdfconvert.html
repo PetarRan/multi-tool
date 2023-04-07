@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Convert Image - Multi Tool</title>
+    <title>Convert PDF to Word - Multi Tool</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -48,8 +48,8 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="/" class="nav-item nav-link">Home</a>
                         <a href="/merge-pdfs" class="nav-item nav-link">Merge PDFs</a>
-                        <a href="/extract-mp3" class="nav-item nav-link ">Extract Mp3</a>
-                        <a href="/convert-image" class="nav-item nav-link active">CONVERT IMAGES</a>
+                        <a href="/extract-mp3" class="nav-item nav-link">Extract Mp3</a>
+                        <a href="/convert-image" class="nav-item nav-link">CONVERT IMAGES</a>
                     </div>
                 </div>
             </nav>
@@ -58,36 +58,20 @@
                 <div class="container my-5 py-5 px-lg-5">
                     <div class="row g-5">
                         <div class="col-lg-6 pt-5 text-center text-lg-start">
-                            <h1 class="display-4 text-white mb-4 animated slideInLeft">Convert Images Online</h1>
-                            <h4 class="text-center mb-4 text-white animated slideInLeft">Upload your image and select a
-                                type</h4>
-                            <form class="mt-5" id="image-form" action="/convert-image-action" enctype="multipart/form-data"
-                                method="POST">
-                                <div class="row">
-                                    <div class="form-group col-6 text-white">
-                                        <label for="image-file">Select Image File</label>
-                                        <input type="file" class="form-control-file" id="file" name="image_file">
-                                    </div>
-
-                                    <div class="form-group col-6 text-white">
-                                        <label for="conversion-type">Select Conversion Type</label>
-                                        <select class="form-control" id="conversion-type" name="output_format">
-                                            <option value="jpeg">JPG</option>
-                                            <option value="png">PNG</option>
-                                            <option value="gif">GIF</option>
-                                        </select>
-                                        <div class="text-end">
-                                            <button disabled id="upload" type="submit" class="btn btn-primary">Convert</button>
-                                        </div>
-                                    </div>
+                            <h1 class="display-4 text-white mb-4 animated slideInLeft">Convert PDF to Word</h1>
+                            <h4 class="text-center mb-4 text-white animated slideInLeft">Upload your PDF Document:</h4>
+                            <form action="/convert-pdf-to-docx" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="file" class="form-label text-white">Upload a PDF</label>
+                                    <input type="file" class="form-control" name="pdf_file" id="file" accept=".pdf"
+                                        multiple>
                                 </div>
-                               
+                                <button disabled id="upload" type="submit" class="btn btn-primary border-0"
+                                    style="background-color:var(--primary)">Upload</button>
                             </form>
-
-                            <div id="output" class="my-4"></div>
                         </div>
                         <div class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid animated zoomIn" src="/static/img/asset5.png" alt="">
+                            <img class="img-fluid animated zoomIn" src="/static/img/asset2.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -96,19 +80,19 @@
         <!-- Navbar & Hero End -->
 
         <!-- About Start -->
-        <div class="container-xxl py-5">
+        <div class="container-xxl py-5" id="tools">
             <div class="container px-lg-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="section-title position-relative mb-4 pb-4">
                             <h1 class="mb-2">Welcome to Multi Tool</h1>
                         </div>
-                        <p class="mb-4">this web app offers a range of tools to help you convert and manipulate your
+                        <p class="mb-4">This web app offers a range of tools to help you convert and manipulate your
                             files with ease, making it a useful resource for anyone who needs to work with different
                             types of files on a regular basis.</p>
                         <div class="row g-3">
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
-                                <a href="">
+                                <a href="/convert-pdf">
                                     <div class="about-link bg-light rounded text-center p-4">
                                         <i class="fa fa-file-word fa-2x mb-2"></i>
                                         <p class="mb-0">Convert PDF To <br>Word</p>
@@ -116,7 +100,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-                                <a href="">
+                                <a href="/extract-mp3">
                                     <div class="about-link bg-light rounded text-center p-4">
                                         <i class="fa fa-music fa-2x mb-2"></i>
                                         <p class="mb-0">Extract Mp3 from <br>Video</p>
@@ -124,7 +108,7 @@
                                 </a>
                             </div>
                             <div class=" col-sm-4 wow fadeIn" data-wow-delay="0.5s">
-                                <a href="pdfmerge.html">
+                                <a href="/merge-pdfs">
                                     <div class="about-link bg-light rounded text-center p-4">
                                         <i class="fa fa-file-pdf fa-2x mb-2"></i>
                                         <p class="mb-0">Merge <br>PDFs</p>
@@ -134,7 +118,7 @@
                         </div>
                         <div class="row g-3 mt-3">
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
-                                <a href="">
+                                <a href="/convert-image">
                                     <div class="about-link bg-light rounded text-center p-4">
                                         <i class="fa fa-images fa-2x mb-2"></i>
                                         <p class="mb-0">Convert JPG To <br>PNG</p>
@@ -142,7 +126,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-                                <a href="">
+                                <a href="/pdf-pass">
                                     <div class="about-link bg-light rounded text-center p-4">
                                         <i class="fa fa-lock fa-2x mb-2"></i>
                                         <p class="mb-0">Password Protect <br>PDFs</p>
@@ -150,7 +134,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
-                                <a href="">
+                                <a href="/transcibe-audio">
                                     <div class="about-link bg-light rounded text-center p-4">
                                         <i class="fa fa-microphone fa-2x mb-2"></i>
                                         <p class="mb-0">Transcription from <br>Audio</p>
@@ -160,7 +144,7 @@
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="/static/img/asset1.png">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="../static/img/asset2.png">
                     </div>
                 </div>
             </div>
@@ -234,7 +218,6 @@
 
     <!-- Template Javascript -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
 </body>
 
 </html>
